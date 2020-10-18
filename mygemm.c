@@ -88,7 +88,7 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
 //Register Reuse part 2 End
 
 //Register Reuse part 3
-void dgemm3_3x4(const double* A, const double* B, double* C, const int n)
+void dgemm3(const double* A, const double* B, double* C, const int n)
 {
     int i = 0;
     int j = 0;
