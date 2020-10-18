@@ -195,7 +195,7 @@ void bijk(const double *A, const double *B, double *C, const int n, const int b)
                     for (m = j; m < j + b && m < n; m++)
                     {
                         register double Clm = C[l * n + m];
-                        for (n = k; n < k + b && n < n; n++)
+                        for (n = k; n < k + b && n < n; n++) 
                         {
                             Clm += A[l * n + n] * B[n * n + m];
                         }
