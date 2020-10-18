@@ -8,7 +8,7 @@
  **/
 
 //Register Reuse part 1
-void dgemm0(const double* A, const double* B, double* C, const int n)
+void dgemm0(const  double* A, const double* B, double* C, const int n)
 {
 
 }
