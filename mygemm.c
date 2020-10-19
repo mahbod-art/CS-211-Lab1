@@ -84,69 +84,61 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
 //Register Reuse part 3
 void dgemm3(const double* A, const double* B, double* C, const int n)
 {
-   /* int i = 0;
-    int j = 0;
-    int k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i += 3)
     {
         for (j = 0; j < n; j += 4)
         {
             register double C1 = C[i * n + j];
-            register double C2 = i < (n - 1) ? C[(i + 1) * n + j] : 0;
-            register double C3 = i < (n - 2) ? C[(i + 2) * n + j] : 0;
-            register double C4 = j < (n - 1) ? C[i * n + (j + 1)] : 0;
-            register double C5 = i < (n - 1) && j < (n - 1) ? C[(i + 1) * n + (j + 1)] : 0;
-            register double C6 = i < (n - 2) && j < (n - 1) ? C[(i + 2) * n + (j + 1)] : 0;
-            register double C7 = j < (n - 2) ? C[i * n + (j + 2)] : 0;
-            register double C8 = i < (n - 1) && j < (n - 2) ? C[(i + 1) * n + (j + 2)] : 0;
-            register double C9 = i < (n - 2) && j < (n - 2) ? C[(i + 2) * n + (j + 2)] : 0;
-            register double C10 = j < (n - 3) ? C[i * n + (j + 3)] : 0;
-            register double C11 = i < (n - 1) && j < (n - 3) ? C[(i + 1) * n + (j + 3)] : 0;
-            register double C12 = i < (n - 2) && j < (n - 3) ? C[(i + 2) * n + (j + 3)] : 0;
+            register double C2 = C[(i + 1) * n + j];
+            register double C3 = C[(i + 2) * n + j];
+            register double C4 = C[i * n + (j + 1)];
+            register double C5 = C[(i + 1) * n + (j + 1)];
+            register double C6 = C[(i + 2) * n + (j + 1)];
+            register double C7 = C[i * n + (j + 2)];
+            register double C8 = C[(i + 1) * n + (j + 2)];
+            register double C9 = C[(i + 2) * n + (j + 2)];
+            register double C10 = C[i * n + (j + 3)];
+            register double C11 = C[(i + 1) * n + (j + 3)];
+            register double C12 = C[(i + 2) * n + (j + 3)];
             for (k = 0; k < n; k++)
             {
                 register double A1 = A[i * n + k];
-                register double A2 = i < (n - 1) ? A[(i + 1) * n + k] : 0;
-                register double A3 = i < (n - 2) ? A[(i + 2) * n + k] : 0;
+                register double A2 = A[(i + 1) * n + k];
+                register double A3 = A[(i + 2) * n + k];
                 register double B1 = B[k * n + j];
 
                 C1 += A1 * B1;
                 C2 += A2 * B1;
                 C3 += A3 * B1;
-
-                B1 = j < (n - 1) ? B[k * n + (j + 1)] : 0;
+                B1 = B[k * n + (j + 1)];
                 C4 += A1 * B1;
                 C5 += A2 * B1;
                 C6 += A3 * B1;
-
-                B1 = j < (n - 2) ? B[k * n + (j + 2)] : 0;
+                B1 = B[k * n + (j + 2)];
                 C7 += A1 * B1;
                 C8 += A2 * B1;
                 C9 += A3 * B1;
-
-                B1 = j < (n - 3) ? B[k * n + (j + 3)] : 0;
+                B1 = B[k * n + (j + 3)];
                 C10 += A1 * B1;
                 C11 += A2 * B1;
                 C12 += A3 * B1;
             }
 
             C[i * n + j] = C1;
-            if (i < (n - 1)) C[(i + 1) * n + j] = C2;
-            if (i < (n - 2)) C[(i + 2) * n + j] = C3;
-
-            if (j < (n - 1)) C[i * n + (j + 1)] = C4;
-            if (i < (n - 1) && j < (n - 1)) C[(i + 1) * n + (j + 1)] = C5;
-            if (i < (n - 2) && j < (n - 1)) C[(i + 2) * n + (j + 1)] = C6;
-
-            if (j < (n - 2)) C[i * n + (j + 2)] = C7;
-            if (i < (n - 1) && j < (n - 2)) C[(i + 1) * n + (j + 2)] = C8;
-            if (i < (n - 2) && j < (n - 2)) C[(i + 2) * n + (j + 2)] = C9;
-
-            if (j < (n - 3)) C[i * n + (j + 3)] = C10;
-            if (i < (n - 1) && j < (n - 3)) C[(i + 1) * n + (j + 3)] = C11;
-            if (i < (n - 2) && j < (n - 3)) C[(i + 2) * n + (j + 3)] = C12;
+            C[(i + 1) * n + j] = C2;
+            C[(i + 2) * n + j] = C3;
+            C[i * n + (j + 1)] = C4;
+            C[(i + 1) * n + (j + 1)] = C5;
+            C[(i + 2) * n + (j + 1)] = C6;
+            C[i * n + (j + 2)] = C7;
+            C[(i + 1) * n + (j + 2)] = C8;
+            C[(i + 2) * n + (j + 2)] = C9;
+            C[i * n + (j + 3)] = C10;
+            C[(i + 1) * n + (j + 3)] = C11;
+            C[(i + 2) * n + (j + 3)] = C12;
         }
-    }*/
+    }
 }
 //Register Reuse part 3 End
 
