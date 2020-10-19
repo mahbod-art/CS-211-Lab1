@@ -162,7 +162,7 @@ void ijk(const double *A, const double *B, double *C, const int n)
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
     int i = 0, j = 0, k = 0;
-    int kBLK=0, jBLK=0, iBLK=0;
+    int kBLK = 0, jBLK = 0, iBLK = 0;
     for(i=0; i<n; i+=b)
     {
 		for(j=0; j<n; j+=b)	
@@ -188,7 +188,7 @@ void bijk(const double *A, const double *B, double *C, const int n, const int b)
 
 void jik(const double *A, const double *B, double *C, const int n) 
 {
-    int i = 0, j = 0, k = 0;
+ /*   int i = 0, j = 0, k = 0;
     for (j = 0; j < n; j++)
     {
         for (i = 0; i < n; i++)
@@ -200,7 +200,7 @@ void jik(const double *A, const double *B, double *C, const int n)
             }
             C[i * n + j] = Cij;
         }
-    }
+    }*/
 }
 
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
@@ -228,7 +228,7 @@ void bjik(const double *A, const double *B, double *C, const int n, const int b)
 
 void kij(const double *A, const double *B, double *C, const int n) 
 {
-    int i = 0, j = 0, k = 0;
+  /*  int i = 0, j = 0, k = 0;
     for (k = 0; k < n; k++)
     {
         for (i = 0; i < n; i++)
@@ -239,7 +239,7 @@ void kij(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += Aik * B[k * n + j];
             }
         }
-    }
+    }*/
 }
 
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
@@ -267,7 +267,7 @@ void bkij(const double *A, const double *B, double *C, const int n, const int b)
 
 void ikj(const double *A, const double *B, double *C, const int n) 
 {
-    int i = 0, j = 0, k = 0;
+ /*   int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (k = 0; k < n; k++)
@@ -278,7 +278,7 @@ void ikj(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += Aik * B[k * n + j];
             }
         }
-    }
+    }*/
 }
 
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
@@ -305,7 +305,7 @@ void bikj(const double *A, const double *B, double *C, const int n, const int b)
 
 void jki(const double *A, const double *B, double *C, const int n) 
 {
-    int i = 0, j = 0, k = 0;
+ /*   int i = 0, j = 0, k = 0;
     for (j = 0; j < n; j++)
     {
         for (k = 0; k < n; k++)
@@ -316,7 +316,7 @@ void jki(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += A[i * n + k] * Bkj;
             }
         }
-    }
+    }*/
 }
 
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
@@ -343,7 +343,7 @@ void bjki(const double *A, const double *B, double *C, const int n, const int b)
 
 void kji(const double *A, const double *B, double *C, const int n) 
 {
-    int i = 0, j = 0, k = 0;
+  /*  int i = 0, j = 0, k = 0;
     for (k = 0; k < n; k++)
     {
         for (j = 0; j < n; j++)
@@ -354,7 +354,7 @@ void kji(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += A[i * n + k] * Bkj;
             }
         }
-    }
+    }*/
 }
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
