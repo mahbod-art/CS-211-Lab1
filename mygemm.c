@@ -178,7 +178,7 @@ void ijk(const double *A, const double *B, double *C, const int n)
 
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int k=0;
+    int k=0;
     int j=0;
     int i=0;
     int kB=0;
@@ -196,7 +196,7 @@ void bijk(const double *A, const double *B, double *C, const int n, const int b)
 							res+=A[iB*n+kB]*B[kB*n+jB];
 						C[iB*n+jB]=res;
 					}
-			}*/
+			}
 }
 
 void jik(const double *A, const double *B, double *C, const int n) 
@@ -220,7 +220,7 @@ void jik(const double *A, const double *B, double *C, const int n)
 
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int k=0;
+    int k=0;
     int j=0;
     int i=0;
     int kB=0;
@@ -238,7 +238,7 @@ void bjik(const double *A, const double *B, double *C, const int n, const int b)
 							res+=A[iB*n+kB]*B[kB*n+jB];
 						C[iB*n+jB]=res;
 					}
-			}*/
+			}
 }
 
 void kij(const double *A, const double *B, double *C, const int n) 
@@ -261,7 +261,7 @@ void kij(const double *A, const double *B, double *C, const int n)
 
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int k=0;
+    int k=0;
     int j=0;
     int i=0;
     int kB=0;
@@ -278,7 +278,7 @@ void bkij(const double *A, const double *B, double *C, const int n, const int b)
 						for( jB=j;jB<j+b && jB<n;jB++)
 							C[iB*n+jB]+=res*B[kB*n+jB];
 					}
-			}*/
+			}
 }
 
 
