@@ -423,32 +423,18 @@ void kji(const double *A, const double *B, double *C, const int n)
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int k = 0;
-    for (k = 0; k < n; k += b)
-    {
-        int j = 0;
-        for (j = 0; j < n; j += b)
-        {
-            int i = 0;
-            for (i = 0; i < n; i += b)
-            {
-                int k1 = 0;
-                for (k1 = k; k1 < k + b && k1 < n; k1++)
-                {
-                    int j1 = 0;
-                    for (j1 = j; j1 < j + b && j1 < n; j1++)
-                    {
-                        register double B_k1_j1 = B[k1 * n + j1];
-                        int i1 = 0;
-                        for (i1 = i; i1 < i + b && i1 < n; i1++)
-                        {
-                            C[i1 * n + j1] += A[i1 * n + k1] * B_k1_j1;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    for(int k=0;k<n;k+=b)
+		for(int j=0;j<n;j+=b)	
+			for(int i=0;i<n;i+=b)
+			{
+				for(int kB=k;kB<k+b && kB<n;kB++)
+					for(int jB=j;jB<j+b && jB<n;jB++)
+					{
+						register double res=B[kB*n+jB];
+						for(int iB=i;iB<i+b && iB<n;iB++)
+							C[iB*n+jB]+=res*A[iB*n+kB];
+					}
+			}
 }
 //Cache Reuse part 3 End 
 
