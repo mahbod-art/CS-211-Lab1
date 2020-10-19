@@ -205,7 +205,7 @@ void jik(const double *A, const double *B, double *C, const int n)
 
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int i = 0, j = 0, k = 0;
+    /*int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for( j=0;j<n;j+=b)
     {
@@ -227,7 +227,7 @@ void bjik(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }    
+    }   */ 
 }
 
 void kij(const double *A, const double *B, double *C, const int n) 
@@ -248,7 +248,7 @@ void kij(const double *A, const double *B, double *C, const int n)
 
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int i = 0, j = 0, k = 0;
+   /* int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(k=0;k<n;k+=b)
     {
@@ -269,7 +269,7 @@ void bkij(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }        
+    }    */    
 }
 
 
@@ -291,7 +291,7 @@ void ikj(const double *A, const double *B, double *C, const int n)
 
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int i = 0, j = 0, k = 0;
+  /*  int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(i=0;i<n;i+=b)
     {
@@ -312,7 +312,7 @@ void bikj(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }        
+    }   */     
 }
 
 void jki(const double *A, const double *B, double *C, const int n) 
@@ -333,7 +333,7 @@ void jki(const double *A, const double *B, double *C, const int n)
 
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int i = 0, j = 0, k = 0;
+   /* int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(j=0;j<n;j+=b)
     {
@@ -354,7 +354,7 @@ void bjki(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }        
+    }   */     
 }
 
 void kji(const double *A, const double *B, double *C, const int n) 
@@ -375,7 +375,7 @@ void kji(const double *A, const double *B, double *C, const int n)
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int i = 0, j = 0, k = 0;
+  /*  int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(k=0;k<n;k+=b)
     {
@@ -396,78 +396,68 @@ void bkji(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }        
+    }    */    
 }
 //Cache Reuse part 3 End 
 
 //Cache Reuse part 4
 void optimal(const double* A, const double* B, double *C, const int n, const int b)
 {
- /*   int i = 0;
+    int i = 0, j = 0, k = 0;
+    int iBLK = 0, jBLK = 0, kBLK = 0;
     for (i = 0; i < n; i += b)
     {
-        int j = 0;
         for (j = 0; j < n; j += b)
         {
-            int k = 0;
             for (k = 0; k < n; k += b)
             {
-                int i1 = 0;
-                for (i1 = i; i1 < (i + b > n? n : (i + b)); i1 += 3)
+                for (iBLK = i; iBLK < (i + b > n? n : (i + b)); iBLK += 3)
                 {
-                    int j1 = 0;
-                    for (j1 = j; j1 < (j + b > n? n : (j + b)); j1 += 3)
+                    for (jBLK = j; jBLK < (j + b > n? n : (j + b)); jBLK += 3)
                     {
-                        register double C_0_0 = C[i1 * n + j1];
-                        register double C_1_0 = C[(i1 + 1) * n + j1];
-                        register double C_2_0 = C[(i1 + 2) * n + j1];
+                        register double C1 = C[iBLK * n + jBLK];
+                        register double C2 = C[(iBLK + 1) * n + jBLK];
+                        register double C3 = C[(iBLK + 2) * n + jBLK];
 
-                        register double C_0_1 = C[i1 * n + (j1 + 1)];
-                        register double C_1_1 = C[(i1 + 1) * n + (j1 + 1)];
-                        register double C_2_1 = C[(i1 + 2) * n + (j1 + 1)];
+                        register double C4 = C[iBLK * n + (jBLK + 1)];
+                        register double C5 = C[(iBLK + 1) * n + (jBLK + 1)];
+                        register double C6 = C[(iBLK + 2) * n + (jBLK + 1)];
 
-                        register double C_0_2 = C[i1 * n + (j1 + 2)];
-                        register double C_1_2 = C[(i1 + 1) * n + (j1 + 2)];
-                        register double C_2_2 = C[(i1 + 2) * n + (j1 + 2)];
+                        register double C7 = C[iBLK * n + (jBLK + 2)];
+                        register double C8 = C[(iBLK + 1) * n + (jBLK + 2)];
+                        register double C9 = C[(iBLK + 2) * n + (jBLK + 2)];
 
-                        int k1 = 0;
-                        for (k1 = k; k1 < (k + b > n? n : (k + b)); k1++)
+                        for (kBLK = k; kBLK < (k + b > n? n : (k + b)); kBLK++)
                         {
-                            register double A_0_M = A[i1 * n + k1];
-                            register double A_1_M = A[(i1 + 1) * n + k1];
-                            register double A_2_M = A[(i1 + 2) * n + k1];
-
-                            register double B_M =  B[k1 * n + j1];
-                            C_0_0 += A_0_M * B_M;
-                            C_1_0 += A_1_M * B_M;
-                            C_2_0 += A_2_M * B_M;
-
-                            B_M = B[k1 * n + (j1 + 1)];
-                            C_0_1 += A_0_M * B_M;
-                            C_1_1 += A_1_M * B_M;
-                            C_2_1 += A_2_M * B_M;
-
-                            B_M = B[k1 * n + (j1 + 2)];
-                            C_0_2 += A_0_M * B_M;
-                            C_1_2 += A_1_M * B_M;
-                            C_2_2 += A_2_M * B_M;
+                            register double A0 = A[iBLK * n + kBLK];
+                            register double A1 = A[(iBLK + 1) * n + kBLK];
+                            register double A2 = A[(iBLK + 2) * n + kBLK];
+                            register double B0 =  B[kBLK * n + jBLK];
+                            C1 += A0 * B0;
+                            C2 += A1 * B0;
+                            C3 += A2 * B0;
+                            B0 = B[kBLK * n + (jBLK + 1)];
+                            C4 += A0 * B0;
+                            C5 += A1 * B0;
+                            C6 += A2 * B0;
+                            B0 = B[kBLK * n + (jBLK + 2)];
+                            C7 += A0 * B0;
+                            C8 += A1 * B0;
+                            C9 += A2 * B0;
 
                         }
-                        C[i1 * n + j1] = C_0_0;
-                        C[(i1 + 1) * n + j1] = C_1_0;
-                        C[(i1 + 2) * n + j1] = C_2_0;
-
-                        C[i1 * n + (j1 + 1)] = C_0_1;
-                        C[(i1 + 1) * n + (j1 + 1)] = C_1_1;
-                        C[(i1 + 2) * n + (j1 + 1)] = C_2_1;
-
-                        C[i1 * n + (j1 + 2)] = C_0_2;
-                        C[(i1 + 1) * n + (j1 + 2)] = C_1_2;
-                        C[(i1 + 2) * n + (j1 + 2)] = C_2_2;
-                    
+                        C[iBLK * n + jBLK] = C1;
+                        C[(iBLK + 1) * n + jBLK] = C2;
+                        C[(iBLK + 2) * n + jBLK] = C3;
+                        C[iBLK * n + (jBLK + 1)] = C4;
+                        C[(iBLK + 1) * n + (jBLK + 1)] = C5;
+                        C[(iBLK + 2) * n + (jBLK + 1)] = C6;
+                        C[iBLK * n + (jBLK + 2)] = C7;
+                        C[(iBLK + 1) * n + (jBLK + 2)] = C8;
+                        C[(iBLK + 2) * n + (jBLK + 2)] = C9;
                     }
                 }
             }
         }
-    }*/
+    }
 }
