@@ -50,20 +50,20 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
         for (j = 0; j < n; j += 2)
         {
             register double C1 = C[i * n + j];
-            register double C2 = i < (n - 1) ? C[(i + 1) * n + j] : 0;
-            register double C3 = j < (n - 1) ? C[i * n + (j + 1)] : 0;
-            register double C4 = (i < (n - 1)) && (j < (n - 1))? C[(i + 1) * n + (j + 1)] : 0;
+            register double C2 = C[(i + 1) * n + j];
+            register double C3 = C[i * n + (j + 1)];
+            register double C4 = C[(i + 1) * n + (j + 1)];
             for (k = 0; k < n; k += 2)
             {
                 register double A1 = A[i * n + k];
-                register double A2 = i < (n - 1) ? A[(i + 1) * n + k] : 0;
-                register double A3 = k < (n - 1) ? A[i * n + (k + 1)] : 0;
-                register double A4 = (i < (n - 1)) && (k < (n - 1)) ? A[(i + 1) * n + (k + 1)] : 0;
+                register double A2 = A[(i + 1) * n + k];
+                register double A3 = A[i * n + (k + 1)];
+                register double A4 = A[(i + 1) * n + (k + 1)];
 
                 register double B1 = B[k * n + j];
-                register double B2 = k < (n - 1) ? B[(k + 1) * n + j] : 0;
-                register double B3 = j < (n - 1) ? B[k * n + (j + 1)] : 0;
-                register double B4 = (k < (n - 1)) && (j < (n - 1)) ? B[(k + 1) * n + (j + 1)] : 0;
+                register double B2 = B[(k + 1) * n + j];
+                register double B3 = B[k * n + (j + 1)];
+                register double B4 = B[(k + 1) * n + (j + 1)];
 
                 C1 = C1 + A1 * B1 + A3 * B2;
                 C2 = C2 + A2 * B1 + A4 * B2;
