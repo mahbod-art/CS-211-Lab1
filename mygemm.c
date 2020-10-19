@@ -423,15 +423,21 @@ void kji(const double *A, const double *B, double *C, const int n)
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    for(int k=0;k<n;k+=b)
-		for(int j=0;j<n;j+=b)	
-			for(int i=0;i<n;i+=b)
+    int k=0;
+    int j=0;
+    int i=0;
+    int kB=0;
+    int jB=0;
+    int iB=0;
+    for(k=0;k<n;k+=b)
+		for(j=0;j<n;j+=b)	
+			for(i=0;i<n;i+=b)
 			{
-				for(int kB=k;kB<k+b && kB<n;kB++)
-					for(int jB=j;jB<j+b && jB<n;jB++)
+				for(kB=k;kB<k+b && kB<n;kB++)
+					for(jB=j;jB<j+b && jB<n;jB++)
 					{
 						register double res=B[kB*n+jB];
-						for(int iB=i;iB<i+b && iB<n;iB++)
+						for(iB=i;iB<i+b && iB<n;iB++)
 							C[iB*n+jB]+=res*A[iB*n+kB];
 					}
 			}
