@@ -418,32 +418,30 @@ void optimal(const double* A, const double* B, double *C, const int n, const int
                         register double C1 = C[iBLK * n + jBLK];
                         register double C2 = C[(iBLK + 1) * n + jBLK];
                         register double C3 = C[(iBLK + 2) * n + jBLK];
-
                         register double C4 = C[iBLK * n + (jBLK + 1)];
                         register double C5 = C[(iBLK + 1) * n + (jBLK + 1)];
                         register double C6 = C[(iBLK + 2) * n + (jBLK + 1)];
-
                         register double C7 = C[iBLK * n + (jBLK + 2)];
                         register double C8 = C[(iBLK + 1) * n + (jBLK + 2)];
                         register double C9 = C[(iBLK + 2) * n + (jBLK + 2)];
 
                         for (kBLK = k; kBLK < (k + b > n? n : (k + b)); kBLK++)
                         {
+                            register double B0 =  B[kBLK * n + jBLK];
                             register double A0 = A[iBLK * n + kBLK];
                             register double A1 = A[(iBLK + 1) * n + kBLK];
                             register double A2 = A[(iBLK + 2) * n + kBLK];
-                            register double B0 =  B[kBLK * n + jBLK];
-                            C1 += A0 * B0;
-                            C2 += A1 * B0;
-                            C3 += A2 * B0;
+                            C1 = C1 + A0 * B0;
+                            C2 = C2 + A1 * B0;
+                            C3 = C3 + A2 * B0;
                             B0 = B[kBLK * n + (jBLK + 1)];
-                            C4 += A0 * B0;
-                            C5 += A1 * B0;
-                            C6 += A2 * B0;
+                            C4 = C4 + A0 * B0;
+                            C5 = C5 + A1 * B0;
+                            C6 = C6 + A2 * B0;
                             B0 = B[kBLK * n + (jBLK + 2)];
-                            C7 += A0 * B0;
-                            C8 += A1 * B0;
-                            C9 += A2 * B0;
+                            C7 = C7 + A0 * B0;
+                            C8 = C8 + A1 * B0;
+                            C9 = C9 + A2 * B0;
 
                         }
                         C[iBLK * n + jBLK] = C1;
