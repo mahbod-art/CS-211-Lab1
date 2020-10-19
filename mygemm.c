@@ -10,7 +10,7 @@
 //Register Reuse part 1
 void dgemm0(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -20,12 +20,12 @@ void dgemm0(const double* A, const double* B, double* C, const int n)
                 C[i * n + j] += A[i * n + k] * B[k * n + j];
             }
         }
-    }*/
+    }
 }
 
 void dgemm1(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -37,7 +37,7 @@ void dgemm1(const double* A, const double* B, double* C, const int n)
             }
             C[i * n + j] = C_Temp;
         }
-    }*/
+    }
 }
 //Register Reuse part 1 End
 
@@ -59,7 +59,6 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
                 register double A2 = i < (n - 1) ? A[(i + 1) * n + k] : 0;
                 register double A3 = k < (n - 1) ? A[i * n + (k + 1)] : 0;
                 register double A4 = (i < (n - 1)) && (k < (n - 1)) ? A[(i + 1) * n + (k + 1)] : 0;
-
                 register double B1 = B[k * n + j];
                 register double B2 = k < (n - 1) ? B[(k + 1) * n + j] : 0;
                 register double B3 = j < (n - 1) ? B[k * n + (j + 1)] : 0;
@@ -111,17 +110,14 @@ void dgemm3(const double* A, const double* B, double* C, const int n)
                 C1 = C1 + A1 * B1;
                 C2 = C2 + A2 * B1;
                 C3 = C3 + A3 * B1;
-
                 B1 = j < (n - 1) ? B[k * n + (j + 1)] : 0;
                 C4 = C4 + A1 * B1;
                 C5 = C5 + A2 * B1;
                 C6 = C6 + A3 * B1;
-
                 B1 = j < (n - 2) ? B[k * n + (j + 2)] : 0;
                 C7 = C7 + A1 * B1;
                 C8 = C8 + A2 * B1;
                 C9 = C9 + A3 * B1;
-
                 B1 = j < (n - 3) ? B[k * n + (j + 3)] : 0;
                 C10 = C10 +  A1 * B1;
                 C11 = C11 + A2 * B1;
