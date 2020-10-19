@@ -108,38 +108,35 @@ void dgemm3(const double* A, const double* B, double* C, const int n)
                 register double A3 = i < (n - 2) ? A[(i + 2) * n + k] : 0;
                 register double B1 = B[k * n + j];
 
-                C1 += A1 * B1;
-                C2 += A2 * B1;
-                C3 += A3 * B1;
+                C1 = C1 + A1 * B1;
+                C2 = C2 + A2 * B1;
+                C3 = C3 + A3 * B1;
 
                 B1 = j < (n - 1) ? B[k * n + (j + 1)] : 0;
-                C4 += A1 * B1;
-                C5 += A2 * B1;
-                C6 += A3 * B1;
+                C4 = C4 + A1 * B1;
+                C5 = C5 + A2 * B1;
+                C6 = C6 + A3 * B1;
 
                 B1 = j < (n - 2) ? B[k * n + (j + 2)] : 0;
-                C7 += A1 * B1;
-                C8 += A2 * B1;
-                C9 += A3 * B1;
+                C7 = C7 + A1 * B1;
+                C8 = C8 + A2 * B1;
+                C9 = C9 + A3 * B1;
 
                 B1 = j < (n - 3) ? B[k * n + (j + 3)] : 0;
-                C10 += A1 * B1;
-                C11 += A2 * B1;
-                C12 += A3 * B1;
+                C10 = C10 +  A1 * B1;
+                C11 = C11 + A2 * B1;
+                C12 = C12 + A3 * B1;
             }
 
             C[i * n + j] = C1;
             if (i < (n - 1)) C[(i + 1) * n + j] = C2;
             if (i < (n - 2)) C[(i + 2) * n + j] = C3;
-
             if (j < (n - 1)) C[i * n + (j + 1)] = C4;
             if (i < (n - 1) && j < (n - 1)) C[(i + 1) * n + (j + 1)] = C5;
             if (i < (n - 2) && j < (n - 1)) C[(i + 2) * n + (j + 1)] = C6;
-
             if (j < (n - 2)) C[i * n + (j + 2)] = C7;
             if (i < (n - 1) && j < (n - 2)) C[(i + 1) * n + (j + 2)] = C8;
             if (i < (n - 2) && j < (n - 2)) C[(i + 2) * n + (j + 2)] = C9;
-
             if (j < (n - 3)) C[i * n + (j + 3)] = C10;
             if (i < (n - 1) && j < (n - 3)) C[(i + 1) * n + (j + 3)] = C11;
             if (i < (n - 2) && j < (n - 3)) C[(i + 2) * n + (j + 3)] = C12;
