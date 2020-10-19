@@ -10,7 +10,7 @@
 //Register Reuse part 1
 void dgemm0(const double* A, const double* B, double* C, const int n)
 {
-    int i = 0, j = 0, k = 0;
+    /*int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -20,12 +20,12 @@ void dgemm0(const double* A, const double* B, double* C, const int n)
                 C[i * n + j] += A[i * n + k] * B[k * n + j];
             }
         }
-    }
+    }*/
 }
 
 void dgemm1(const double* A, const double* B, double* C, const int n)
 {
-    int i = 0, j = 0, k = 0;
+    /*int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -37,7 +37,7 @@ void dgemm1(const double* A, const double* B, double* C, const int n)
             }
             C[i * n + j] = C_Temp;
         }
-    }
+    }*/
 }
 //Register Reuse part 1 End
 
@@ -65,16 +65,16 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
                 register double B3 = j < (n - 1) ? B[k * n + (j + 1)] : 0;
                 register double B4 = (k < (n - 1)) && (j < (n - 1)) ? B[(k + 1) * n + (j + 1)] : 0;
 
-                C1 += A1 * B1 + A3 * B2;
-                C2 += A2 * B1 + A4 * B2;
-                C3 += A1 * B3 + A3 * B4;
-                C4 += A2 * B3 + A4 * B4;
+                C1 = C1 + A1 * B1 + A3 * B2;
+                C2 = C2 + A2 * B1 + A4 * B2;
+                C3 = C3 + A1 * B3 + A3 * B4;
+                C4 = C4 + A2 * B3 + A4 * B4;
             }
 
             C[i * n + j] = C1;
-            if (i < (n - 1)) C[(i + 1) * n + j] = C2;
-            if (j < (n - 1)) C[i * n + (j + 1)] = C3;
-            if (i < (n - 1) && j < (n - 1)) C[(i + 1) * n + (j + 1)] = C4;
+            C[(i + 1) * n + j] = C2;
+            C[i * n + (j + 1)] = C3;
+            C[(i + 1) * n + (j + 1)] = C4;
         }
     }
 }
