@@ -84,7 +84,7 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
 //Register Reuse part 3
 void dgemm3(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i += 3)
     {
         for (j = 0; j < n; j += 4)
@@ -129,22 +129,19 @@ void dgemm3(const double* A, const double* B, double* C, const int n)
             }
 
             C[i * n + j] = C1;
-            if (i < (n - 1)) C[(i + 1) * n + j] = C2;
-            if (i < (n - 2)) C[(i + 2) * n + j] = C3;
-
-            if (j < (n - 1)) C[i * n + (j + 1)] = C4;
-            if (i < (n - 1) && j < (n - 1)) C[(i + 1) * n + (j + 1)] = C5;
-            if (i < (n - 2) && j < (n - 1)) C[(i + 2) * n + (j + 1)] = C6;
-
-            if (j < (n - 2)) C[i * n + (j + 2)] = C7;
-            if (i < (n - 1) && j < (n - 2)) C[(i + 1) * n + (j + 2)] = C8;
-            if (i < (n - 2) && j < (n - 2)) C[(i + 2) * n + (j + 2)] = C9;
-
-            if (j < (n - 3)) C[i * n + (j + 3)] = C10;
-            if (i < (n - 1) && j < (n - 3)) C[(i + 1) * n + (j + 3)] = C11;
-            if (i < (n - 2) && j < (n - 3)) C[(i + 2) * n + (j + 3)] = C12;
+            C[(i + 1) * n + j] = C2;
+            C[(i + 2) * n + j] = C3;
+            C[i * n + (j + 1)] = C4;
+            C[(i + 1) * n + (j + 1)] = C5;
+            C[(i + 2) * n + (j + 1)] = C6;
+            C[i * n + (j + 2)] = C7;
+            C[(i + 1) * n + (j + 2)] = C8;
+            C[(i + 2) * n + (j + 2)] = C9;
+            C[i * n + (j + 3)] = C10;
+            C[(i + 1) * n + (j + 3)] = C11;
+            C[(i + 2) * n + (j + 3)] = C12;
         }
-    }*/
+    }
 }
 //Register Reuse part 3 End
 
