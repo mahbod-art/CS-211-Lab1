@@ -192,7 +192,7 @@ void bijk(const double *A, const double *B, double *C, const int n, const int b)
 					for( jB=j;jB<j+b && jB<n;jB++)
 					{
 						register double res=C[iB*n+jB];
-						for(int kB=k;kB<k+b && kB<n;kB++)
+						for( kB=k;kB<k+b && kB<n;kB++)
 							res+=A[iB*n+kB]*B[kB*n+jB];
 						C[iB*n+jB]=res;
 					}
