@@ -302,7 +302,7 @@ void ikj(const double *A, const double *B, double *C, const int n)
 
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int k=0;
+    int k=0;
     int j=0;
     int i=0;
     int kB=0;
@@ -319,7 +319,7 @@ void bikj(const double *A, const double *B, double *C, const int n, const int b)
 						for( jB=j;jB<j+b && jB<n;jB++)
 							C[iB*n+jB]+=res*B[kB*n+jB];
 					}
-			}*/
+			}
 }
 
 void jki(const double *A, const double *B, double *C, const int n) 
@@ -342,7 +342,7 @@ void jki(const double *A, const double *B, double *C, const int n)
 
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int k=0;
+    int k=0;
     int j=0;
     int i=0;
     int kB=0;
@@ -359,7 +359,7 @@ void bjki(const double *A, const double *B, double *C, const int n, const int b)
 						for( iB=i;iB<i+b && iB<n;iB++)
 							C[iB*n+jB]+=res*A[iB*n+kB];
 					}
-			}*/
+			}
 }
 
 void kji(const double *A, const double *B, double *C, const int n) 
