@@ -10,7 +10,7 @@
 //Register Reuse part 1
 void dgemm0(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -20,12 +20,12 @@ void dgemm0(const double* A, const double* B, double* C, const int n)
                 C[i * n + j] += A[i * n + k] * B[k * n + j];
             }
         }
-    }*/
+    }
 }
 
 void dgemm1(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -37,14 +37,14 @@ void dgemm1(const double* A, const double* B, double* C, const int n)
             }
             C[i * n + j] = C_Temp;
         }
-    }*/
+    }
 }
 //Register Reuse part 1 End
 
 //Register Reuse part 2
 void dgemm2(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i += 2)
     {
         for (j = 0; j < n; j += 2)
@@ -75,7 +75,7 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
             C[i * n + (j + 1)] = C3;
             C[(i + 1) * n + (j + 1)] = C4;
         }
-    }*/
+    }
 }
 
 //Register Reuse part 2 End
@@ -83,7 +83,7 @@ void dgemm2(const double* A, const double* B, double* C, const int n)
 //Register Reuse part 3
 void dgemm3(const double* A, const double* B, double* C, const int n)
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i += 3)
     {
         for (j = 0; j < n; j += 4)
@@ -137,14 +137,14 @@ void dgemm3(const double* A, const double* B, double* C, const int n)
             if (i < (n - 1) && j < (n - 3)) C[(i + 1) * n + (j + 3)] = C11;
             if (i < (n - 2) && j < (n - 3)) C[(i + 2) * n + (j + 3)] = C12;
         }
-    }*/
+    }
 }
 //Register Reuse part 3 End
 
 //Cache Reuse part 3
 void ijk(const double *A, const double *B, double *C, const int n) 
 {
-/*    int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -156,12 +156,12 @@ void ijk(const double *A, const double *B, double *C, const int n)
             }
             C[i * n + j] = Cij;
         }
-    }*/
+    }
 }
 
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
- /*   int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(i=0; i<n; i+=b)
     {
@@ -183,12 +183,12 @@ void bijk(const double *A, const double *B, double *C, const int n, const int b)
                 }
 			}
         }
-    }*/
+    }
 }
 
 void jik(const double *A, const double *B, double *C, const int n) 
 {
- /*   int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (j = 0; j < n; j++)
     {
         for (i = 0; i < n; i++)
@@ -200,12 +200,12 @@ void jik(const double *A, const double *B, double *C, const int n)
             }
             C[i * n + j] = Cij;
         }
-    }*/
+    }
 }
 
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    /*int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for( j=0;j<n;j+=b)
     {
@@ -227,12 +227,12 @@ void bjik(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }   */ 
+    }    
 }
 
 void kij(const double *A, const double *B, double *C, const int n) 
 {
-  /*  int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (k = 0; k < n; k++)
     {
         for (i = 0; i < n; i++)
@@ -243,12 +243,12 @@ void kij(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += Aik * B[k * n + j];
             }
         }
-    }*/
+    }
 }
 
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(k=0;k<n;k+=b)
     {
@@ -269,13 +269,13 @@ void bkij(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }    */    
+    }        
 }
 
 
 void ikj(const double *A, const double *B, double *C, const int n) 
 {
- /*   int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (k = 0; k < n; k++)
@@ -286,12 +286,12 @@ void ikj(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += Aik * B[k * n + j];
             }
         }
-    }*/
+    }
 }
 
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
 {
-  /*  int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(i=0;i<n;i+=b)
     {
@@ -312,12 +312,12 @@ void bikj(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }   */     
+    }        
 }
 
 void jki(const double *A, const double *B, double *C, const int n) 
 {
- /*   int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (j = 0; j < n; j++)
     {
         for (k = 0; k < n; k++)
@@ -328,12 +328,12 @@ void jki(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += A[i * n + k] * Bkj;
             }
         }
-    }*/
+    }
 }
 
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
 {
-   /* int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(j=0;j<n;j+=b)
     {
@@ -354,12 +354,12 @@ void bjki(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }   */     
+    }        
 }
 
 void kji(const double *A, const double *B, double *C, const int n) 
 {
-  /*  int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     for (k = 0; k < n; k++)
     {
         for (j = 0; j < n; j++)
@@ -370,12 +370,12 @@ void kji(const double *A, const double *B, double *C, const int n)
                 C[i * n + j] += A[i * n + k] * Bkj;
             }
         }
-    }*/
+    }
 }
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
-  /*  int i = 0, j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(k=0;k<n;k+=b)
     {
@@ -396,7 +396,7 @@ void bkji(const double *A, const double *B, double *C, const int n, const int b)
                 }    
 			}
         }
-    }    */    
+    }        
 }
 //Cache Reuse part 3 End 
 
