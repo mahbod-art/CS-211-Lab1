@@ -144,7 +144,7 @@ void dgemm3(const double* A, const double* B, double* C, const int n)
 //Cache Reuse part 3
 void ijk(const double *A, const double *B, double *C, const int n) 
 {
-    int i = 0, j = 0, k = 0;
+/*    int i = 0, j = 0, k = 0;
     for (i = 0; i < n; i++)
     {
         for (j = 0; j < n; j++)
@@ -156,12 +156,12 @@ void ijk(const double *A, const double *B, double *C, const int n)
             }
             C[i * n + j] = Cij;
         }
-    }
+    }*/
 }
 
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
-    int i = 0, j = 0, k = 0;
+ /*   int i = 0, j = 0, k = 0;
     int kBLK = 0, jBLK = 0, iBLK = 0;
     for(i=0; i<n; i+=b)
     {
@@ -183,7 +183,7 @@ void bijk(const double *A, const double *B, double *C, const int n, const int b)
                 }
 			}
         }
-    }
+    }*/
 }
 
 void jik(const double *A, const double *B, double *C, const int n) 
@@ -205,25 +205,29 @@ void jik(const double *A, const double *B, double *C, const int n)
 
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
 {
-  /*  int k=0;
-    int j=0;
-    int i=0;
-    int kBLK=0;
-    int jBLK=0;
-    int iBLK=0;
+    int i = 0, j = 0, k = 0;
+    int kBLK = 0, jBLK = 0, iBLK = 0;
     for( j=0;j<n;j+=b)
-		for( i=0;i<n;i+=b)	
-			for( k=0;k<n;k+=b)
+    {
+		for(i=0;i<n;i+=b)	
+        {
+			for(k=0;k<n;k+=b)
 			{
-				for( jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
-					for( iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
+				for(jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
+                {
+					for(iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
 					{
 						register double temp=C[iBLK*n+jBLK];
-						for( kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
+						for(kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
+                        {
 							temp+=A[iBLK*n+kBLK]*B[kBLK*n+jBLK];
+                        }
 						C[iBLK*n+jBLK]=temp;
 					}
-			}*/
+                }    
+			}
+        }
+    }    
 }
 
 void kij(const double *A, const double *B, double *C, const int n) 
@@ -244,24 +248,28 @@ void kij(const double *A, const double *B, double *C, const int n)
 
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
 {
-  /*  int k=0;
-    int j=0;
-    int i=0;
-    int kBLK=0;
-    int jBLK=0;
-    int iBLK=0;
-    for( k=0;k<n;k+=b)
-		for( i=0;i<n;i+=b)	
-			for( j=0;j<n;j+=b)
+    int i = 0, j = 0, k = 0;
+    int kBLK = 0, jBLK = 0, iBLK = 0;
+    for(k=0;k<n;k+=b)
+    {
+		for(i=0;i<n;i+=b)	
+        {
+			for(j=0;j<n;j+=b)
 			{
-				for( kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
-					for( iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
+				for(kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
+                {
+					for(iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
 					{
 						register double temp=A[iBLK*n+kBLK];
-						for( jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
+						for(jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
+                        {
 							C[iBLK*n+jBLK]+=temp*B[kBLK*n+jBLK];
+                        }    
 					}
-			}*/
+                }    
+			}
+        }
+    }        
 }
 
 
@@ -283,24 +291,28 @@ void ikj(const double *A, const double *B, double *C, const int n)
 
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
 {
-  /*  int k=0;
-    int j=0;
-    int i=0;
-    int kBLK=0;
-    int jBLK=0;
-    int iBLK=0;
-    for( i=0;i<n;i+=b)
-		for( k=0;k<n;k+=b)	
-			for( j=0;j<n;j+=b)
+    int i = 0, j = 0, k = 0;
+    int kBLK = 0, jBLK = 0, iBLK = 0;
+    for(i=0;i<n;i+=b)
+    {
+		for(k=0;k<n;k+=b)
+        {	
+			for(j=0;j<n;j+=b)
 			{
-				for( iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
-					for( kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
+				for(iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
+                {
+					for(kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
 					{
 						register double temp=A[iBLK*n+kBLK];
-						for( jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
+						for(jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
+                        {
 							C[iBLK*n+jBLK]+=temp*B[kBLK*n+jBLK];
+                        }    
 					}
-			}*/
+                }    
+			}
+        }
+    }        
 }
 
 void jki(const double *A, const double *B, double *C, const int n) 
@@ -321,24 +333,28 @@ void jki(const double *A, const double *B, double *C, const int n)
 
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
 {
- /*   int k=0;
-    int j=0;
-    int i=0;
-    int kBLK=0;
-    int jBLK=0;
-    int iBLK=0;
-    for( j=0;j<n;j+=b)
-		for( k=0;k<n;k+=b)	
-			for( i=0;i<n;i+=b)
+    int i = 0, j = 0, k = 0;
+    int kBLK = 0, jBLK = 0, iBLK = 0;
+    for(j=0;j<n;j+=b)
+    {
+		for(k=0;k<n;k+=b)	
+        {
+			for(i=0;i<n;i+=b)
 			{
-				for( jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
-					for( kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
+				for(jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
+                {
+					for(kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
 					{
 						register double temp=B[kBLK*n+jBLK];
 						for( iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
+                        {
 							C[iBLK*n+jBLK]+=temp*A[iBLK*n+kBLK];
+                        }    
 					}
-			}*/
+                }    
+			}
+        }
+    }        
 }
 
 void kji(const double *A, const double *B, double *C, const int n) 
@@ -359,24 +375,28 @@ void kji(const double *A, const double *B, double *C, const int n)
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
- /*   int k=0;
-    int j=0;
-    int i=0;
-    int kBLK=0;
-    int jBLK=0;
-    int iBLK=0;
+    int i = 0, j = 0, k = 0;
+    int kBLK = 0, jBLK = 0, iBLK = 0;
     for(k=0;k<n;k+=b)
+    {
 		for(j=0;j<n;j+=b)	
+        {
 			for(i=0;i<n;i+=b)
 			{
 				for(kBLK=k;kBLK<k+b && kBLK<n;kBLK++)
+                {
 					for(jBLK=j;jBLK<j+b && jBLK<n;jBLK++)
 					{
 						register double temp=B[kBLK*n+jBLK];
 						for(iBLK=i;iBLK<i+b && iBLK<n;iBLK++)
+                        {
 							C[iBLK*n+jBLK]+=temp*A[iBLK*n+kBLK];
+                        }    
 					}
-			}*/
+                }    
+			}
+        }
+    }        
 }
 //Cache Reuse part 3 End 
 
